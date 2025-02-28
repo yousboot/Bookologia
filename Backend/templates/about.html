@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Book Search</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/style.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/logo.css') }}"
+    />
+  </head>
+  <body class="p-2">
+    <header class="top-0 pb-2 left-0 w-full p-6 px-8 z-50">
+      <div class="flex flex-row items-end justify-end">
+        <div class="relative">
+          <button
+            id="menu-button"
+            class="flex items-center"
+          >
+            <img
+              src="/static/icons/menu-2.svg"
+              alt="Menu"
+              class="w-6 h-6 mr-3 opacity-80 hover:opacity-100 cursor-pointer"
+            />
+          </button>
+          <div
+            id="menu-dropdown"
+            class="absolute right-0 mt-2 w-48 text-sm bg-white shadow-lg rounded-xl hidden"
+          >
+            <a
+              href="/collectionPage"
+              class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >
+              Collections
+            </a>
+            <a
+              href="/about"
+              class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >
+              About Us
+            </a>
+            <a
+              href="/privacy-policy"
+              class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >
+              Privacy Policy
+            </a>
+            <button
+              id="logout-button"
+              class="block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="max-w-3xl  mx-auto p-4 mt-4 gap-4 flex flex-col">
+        <div class="justify-center flex flex-row mb-7">
+          <a
+            href="/"
+            class="text-color-logo font-logo text-7xl"
+          >
+            Bookologia
+          </a>
+        </div>
+        <div
+          class="flex flex-row text-lg mt-10 text-gray-600 items-start bookolor-4 justify-start font-title"
+        >
+          The Vision
+        </div>
+        <div
+          class="flex flex-row text-md text-gray-600 items-start justify-start font-authorname"
+        >
+        It's weird to say this, but Bookologia started with a particular frustration; I couldn't find books I was looking for. In my day to life as a Founding Engineer, I wear different hats. I design and code, sometimes I manage other developers and other days I find myself dealing with finances. And for this torrent of tasks to be done everyday, I have to read a lot. Documentation, technical books, manuals ... etc. Basically specialized books, and google seemed like a door to a sea, and I have yet to find the right fish. Finding the right fish is the problem ! <br \><br \>
+
+        The idea came to me absurdly; I was working on an IBM product from the 1990s, and documentation for that product didn't exist anywhere else, except a series of books called IBM Redbooks. I looked for them online, there were thousands provided by IBM and I was completely lost. I stopped for a second and started daydreaming: what if there was a specialized search engine that could find me any book link within seconds ? I envisioned it as a specialized version of Google.   <br \><br \>
+        
+        The idea seemed ingenious and brilliant, but technically was very challenging. I gave it a thought and realized that this was very big and I need to allocate a proper time to think about it, and that's exactly what I did a couple of days later. Novels, non-fiction, documentation ... etc, the search engine must be data agnostic. "ANY" book link was the idea, and that's how this project came to life. 
+        
+      </div>
+
+        <div
+        class="flex flex-row text-lg mt-10 text-gray-600 items-start bookolor-4 justify-start font-title"
+      >
+      About the Author
+      </div>
+      <div
+      class="flex flex-row text-md text-gray-600 items-start justify-start font-authorname"
+    >
+        
+        I'm youssef, I work as a data and founding engineer with startups. Basically I am the first software engineer hired by founders. They have an idea and they need a little help to bring it into the world; and that's where my role comes. I do market research, talk to potential customers, develop the vision more accurately, and build the product until it's served to customers, and then I move to the next project. I'm a generalist, and it took me years to realize this; even though I double majored in computer science and economics, I couldn't envision a better job for me. <br \><br \>
+        
+        In my spare time, I take the liberty to create products that solves a problem I have, which most of the time, I publish as open source. Bookologia is only one of many others. If you took the time to get through it, you will realize that I break a lot of design and product conventions. I don't like "submit" buttons, why put one when you can press "enter", or "close pop up", just click outside of it. Or sometimes menu just exist in the main page, to find it just click on the logo to go back. Shortcuts are also part of every product I create... and so on and so on. <br \><br \>
+        
+        I might have my own philosophy of product design, and I dare to break the rules. I have the utmost conviction that users are very smart and can adapt pretty quickly to a product they love, and engineers usually don't agree with me. Making products juvenile slows down the experience. Simplifying to the stupidity might work for a website with billion users, but most of the online tools barely have hundred thousands users every month, and so the design of the billion users website only works for the billion users website, it's not the norm. 
+      </div>
+
+      <div
+      class="flex flex-row text-lg mt-10 text-gray-600 items-start bookolor-4 justify-start font-title"
+    >
+    Technology
+    </div>
+        
+
+        <div
+        class="flex flex-row text-md text-gray-600 items-start justify-start font-authorname"
+      >
+        You might not have realized yet, but this website is built with Javascript and Python only; and the only framework I used is Tailwind. Why ? As someone who have worked closely with the whole stack of frameworks, and have seen how startups approach their products, I can tell you that the frameworks are useless 90% of the time. They are used where they shouldn't be. Every product goes through stages; being a baby, then a kid, an adolescent, an adult, and lastly an elder. Each stage has its own methods and tools, using something too early or too late will definitely hurt the product; the same goes with the tempo, you go too fast in the babyhood you create a weak foundation, you go too slow in adolescence and you get outcompeted. I see it like a symphony and everything must respect a tempo, a special instrument and a technique that only works for that stage. <br \><br \>
+        
+        So, this project isn't intended for the million users yet; as I write this memo, it's intended for a thousand at best. I just want to provide it to people who can actually see how it works, and if they want, might host it locally. <br \><br \>
+        
+        Programming languages and frameworks are usually not the problem. The problem usually comes from the software architecture, how it's deployed, how many servers are managing the backend etc. Frameworks might sometimes serve the opposite of fast and reliable if you don't feed enough users, to use a bulldozer to chase a bee isn't the right way.
+        
+      </div>
+
+
+        <div
+        class="flex flex-row text-lg mt-10 text-gray-600 items-start bookolor-4 justify-start font-title"
+      >
+      Copyright Notice
+      </div>      
+      
+      <div
+      class="flex flex-row text-md text-gray-600 items-start justify-start font-authorname"
+    >
+
+        As someone who consumed enough books in his life, and I was proud to call myself a Bookworm for a while; I've always had immense respect to the publishing industry and mostly authors. They are people who work hard in a field that is intellectually, financially, and physically challenging, in order to provide the books we enjoy, and for that reason I have bought at least a thousand book in my life from bookstores; I support creators as I don't want people usurping or threatening my own work. <br \><br \>
+        
+        Bookologia does not store, distribute, sell, or facilitate access to any copyrighted material whatsoever. We don't store books, we don't sell them, we don't give access to them. We are nothing more than a specialized search engine that is based on the following search engines : Google, Duck Duck Go. Whatever we link to could've easily been found in a simple search in the previous search engines. And we highly recommend, that if you are a rights holder or owner of a book that you do not want being publicly available on search engines, to contact the websites that hosts them and ask them for removal. <br \><br \>
+        
+        The links, as you might see in the open source codebase of our project, are stored in the database, and are flushed every 15 days. So if you have previously asked the website that hosts your book for removal, and they removed it, then our website will be linking to a dead link, that will be flushed from the system within 15 days. That means, once you ask the websites that distribute your book for removal, it's gone. 
+        
+        However, we believe Google and Duck Duck Go and all the search engines already comply to DMCA claims and have already done the work. So if you have a problem with that, we highly invite you to go visit their DMCA page for more information or contact the websites hosting the book directly.
+                </div>
+
+        </div>
+
+      </div>
+    </header>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Collections</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/style.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/book.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/logo.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/bookCollection.css') }}"
+    />
+    <script
+      defer
+      src="/static/scripts/collection.js"
+    ></script>
+  </head>
+  <body class="">
+    <header class="top-0 pt-4 left-0 w-full p-10 bg-white z-50">
+      <div
+        class="max-w-7xl mx-auto pt-5 px-14 py-3 gap-4 items-end justify-center flex flex-col"
+      >
+        <div class="justify-start flex flex-row ">
+          <a
+            href="/"
+            class="text-color-logo font-logo text-3xl cursor-pointer"
+          >
+            Bookologia
+          </a>
+        </div>
+      </div>
+    </header>
+    <div class="flex max-w-7xl justify-center mx-auto">
+      <!-- Sidebar for collections -->
+      <div class="w-1/4  p-4">
+        <input
+          type="text"
+          id="newCollectionInput"
+          placeholder="New collection"
+          class="w-full p-3 px-6 border text-sm rounded-xl mb-6"
+        />
+
+        <ul
+          id="collectionList"
+          class="space-y-2"
+        ></ul>
+      </div>
+
+      <!-- Main content for books -->
+      <div class="flex-1">
+        <div class="flex justify-between items-center mb-4">
+          <h2
+            id="collectionTitle"
+            class="text-2xl font-semibold"
+          ></h2>
+          <div
+            class="hidden"
+            id="collectionActions"
+          >
+            <button
+              id="renameCollectionBtn"
+              class="bg-yellow-500 text-white px-4 py-2 rounded"
+            >
+              Rename
+            </button>
+            <button
+              id="deleteCollectionBtn"
+              class="bg-red-500 text-white px-4 py-2 rounded"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+        <ul
+          id="bookList"
+          class="grid grid-cols-6 mx-20 gap-4"
+        ></ul>
+      </div>
+    </div>
+
+    <!-- Modal for renaming and creating collection -->
+    <div
+      id="modal"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+    >
+      <div class="bg-white p-6 rounded-lg">
+        <h3
+          id="modalTitle"
+          class="text-lg font-semibold mb-4"
+        ></h3>
+        <input
+          type="text"
+          id="collectionNameInput"
+          class="w-full border p-2 mb-4"
+        />
+        <button
+          id="modalConfirmBtn"
+          class="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Confirm
+        </button>
+        <button
+          id="modalCancelBtn"
+          class="ml-2 bg-gray-400 text-white px-4 py-2 rounded"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

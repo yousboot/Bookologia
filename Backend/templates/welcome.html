@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Welcome</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/welcome.css') }}"
+    />
+  </head>
+  <body class="bg-white min-h-screen p-6">
+    <div class="flex flex-row items-centrer justify-between">
+      <div
+        id="recommended-books"
+        class="columns-4 [column-gap:1rem] my-[3px] relative max-h-screen overflow-hidden max-w-[100%] p-4 w-full -ml-4 -mt-20"
+      ></div>
+
+      <div
+        class="form-section w-full max-w-8xl flex flex-col items-center justify-center mx-auto"
+      >
+        <div
+          class="form-section w-full max-w-8xl flex flex-col items-center justify-center mx-auto"
+        >
+          <div
+            class="form-section w-full max-w-8xl flex flex-col items-center justify-center mx-auto"
+          >
+            <!-- LOGIN FORM (default view) -->
+            <form
+              id="login-form"
+              class="flex flex-col gap-3 max-w-sm w-full"
+            >
+              <span
+                class="text-color-logo flex flex-row justify-center py-10 font-logo text-4xl"
+              >
+                Bookologia
+              </span>
+
+              <span
+                id="login-error"
+                class="text-red-500 text-sm hidden"
+              ></span>
+              <!-- Error message -->
+
+              <input
+                type="text"
+                id="login-email"
+                name="email"
+                placeholder="Email"
+                required
+                class="border py-3 px-4 text-sm rounded-md w-full"
+              />
+              <input
+                type="password"
+                id="login-password"
+                name="password"
+                placeholder="Password"
+                required
+                class="border py-3 px-4 text-sm rounded-md w-full"
+              />
+
+              <a
+                href="#"
+                onclick="event.preventDefault();"
+                class="ml-2 text-sm text-gray-500 mb-2 hover:text-gray-800"
+              >
+                I forgot my password!
+              </a>
+
+              <button
+                type="submit"
+                id="login-btn"
+                class="text-white py-3 px-4 font-bold tracking-wide hover:opacity-90 rounded-xl bookolor-5"
+              >
+                Login
+              </button>
+
+              <button
+                id="switch-to-register"
+                type="button"
+                class="text-bookolor-5 py-3 px-4 font-bold tracking-wide rounded-xl border border-[#3b000f] bookolor-6"
+              >
+                Register
+              </button>
+
+              <div class="flex flex-row items-center justify-center gap-4 mt-1">
+                <div
+                  class="text-xs text-gray-500 hover:text-gray-800 cursor-pointer"
+                  onclick="window.location.href='/terms';"
+                >
+                  Terms of Use
+                </div>
+
+                <div class="text-xs text-gray-500 px-2">|</div>
+                <div
+                  class="text-xs text-gray-500 hover:text-gray-800 cursor-pointer"
+                  onclick="window.location.href='/privacy';"
+                >
+                  Privacy Policy
+                </div>
+              </div>
+            </form>
+
+            <!-- REGISTER FORM (hidden by default) -->
+            <form
+              id="register-form"
+              class="flex flex-col gap-3 max-w-sm w-full"
+            >
+              <span
+                class="text-color-logo flex flex-row justify-center py-10 font-logo text-4xl"
+              >
+                Bookologia
+              </span>
+
+              <div class="relative w-full">
+                <div class="py-2">
+                  <span
+                    id="username-error"
+                    class="text-red-500 text-sm hidden "
+                  ></span>
+                </div>
+                <input
+                  type="text"
+                  id="register-email"
+                  name="email"
+                  placeholder="Email"
+                  required
+                  class="border py-3 px-4 text-sm rounded-md w-full pr-10"
+                />
+                <img
+                  src="/static/icons/check.svg"
+                  alt="check"
+                  class="check-icon hidden absolute right-3 top-7 w-4 h-4 opacity-70"
+                />
+              </div>
+
+              <div class="relative w-full">
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="Username"
+                  required
+                  class="border py-3 px-4 text-sm rounded-md w-full pr-10"
+                />
+                <img
+                  src="/static/icons/check.svg"
+                  alt="check"
+                  class="check-icon hidden absolute right-3 top-4 w-4 h-4 opacity-70"
+                />
+              </div>
+
+              <div class="relative w-full">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                  required
+                  class="border py-3 px-4 text-sm rounded-md w-full pr-10"
+                />
+                <img
+                  src="/static/icons/check.svg"
+                  alt="check"
+                  class="check-icon hidden absolute right-3 top-4 w-4 h-4 opacity-70"
+                />
+              </div>
+
+              <div class="relative w-full">
+                <input
+                  type="password"
+                  id="confirm-password"
+                  name="confirm_password"
+                  placeholder="Confirm Password"
+                  required
+                  class="border py-3 px-4 text-sm rounded-md w-full pr-10"
+                />
+                <img
+                  src="/static/icons/check.svg"
+                  alt="check"
+                  class="check-icon hidden absolute right-3 top-4 w-4 h-4 opacity-70"
+                />
+              </div>
+
+              <button
+                id="register-btn"
+                type="button"
+                class="text-white py-3 px-4 font-bold tracking-wide hover:opacity-90 rounded-xl bookolor-5"
+              >
+                Register
+              </button>
+
+              <button
+                id="switch-to-login"
+                type="button"
+                class="text-bookolor-5 py-3 px-4 font-bold tracking-wide rounded-xl border border-[#3b000f] bookolor-6"
+              >
+                Login
+              </button>
+
+              <div class="flex flex-row items-center justify-center gap-4 mt-1">
+                <div
+                  class="text-xs text-gray-500 hover:text-gray-800 cursor-pointer"
+                >
+                  Terms of Use
+                </div>
+                <div class="text-xs text-gray-500 px-2">|</div>
+                <div
+                  class="text-xs text-gray-500 hover:text-gray-800 cursor-pointer"
+                >
+                  Privacy Policy
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/welcome.js') }}"></script>
+  </body>
+</html>

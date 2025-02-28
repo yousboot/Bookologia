@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>{{ book.title }} - Book Details</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/style.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/book.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/logo.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/bookSimilar.css') }}"
+    />
+  </head>
+  <body
+    class="p-2"
+    data-book-id="{{ book.book_id }}"
+  >
+    <header class="top-0 pt-4 left-0 w-full p-10 bg-white z-50">
+      <div
+        class="max-w-7xl mx-auto pt-5 px-16 py-3 gap-4 items-end justify-center flex flex-col"
+      >
+        <div class="justify-start flex flex-row ">
+          <a
+            href="/"
+            class="text-color-logo font-logo text-3xl"
+          >
+            Bookologia
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-8xl mx-44 ">
+      <div class="flex ml-28 items-start">
+        <div class="">
+          {% if book.author_id %}
+          <p
+            id="author-section"
+            class="text-lg opacity-70 -mt-2 mb-2"
+          >
+            {{ book.author_id }}
+          </p>
+          {% endif %}
+
+          <h1 class="text-2xl text-gray-800 font-title font-bold mb-6">
+            {{ book.title[:50] }}{% if book.title|length > 50 %}
+            <br />
+            {{ book.title[50:] }}{% endif %}
+          </h1>
+
+          {% if book.description %}
+          <p class="mb-4 w-4/5 text-gray-600 font-text text-md mb-6">
+            <span id="short-desc">{{ book.description[:650] }}...</span>
+            <span
+              id="full-desc"
+              class="hidden"
+            >
+              {{ book.description }}
+            </span>
+            <button
+              id="toggle-desc"
+              class="text-blue-800 ml-2"
+            >
+              Show more
+            </button>
+          </p>
+          {% endif %}
+
+          <div class="my-8">
+            <div class="divider div-transparent"></div>
+          </div>
+
+          <div class="grid mb-2 w-4/5 grid-cols-2 gap-3">
+            {% if book.language %}
+            <div class="py-1">
+              <strong class="opacity-30 text-gray-700">
+                Language &nbsp; &nbsp; &nbsp;
+              </strong>
+              <span class="opacity-70 font-authorname">
+                {{ book.language }}
+              </span>
+            </div>
+            {% endif %} {% if book.publish_date %}
+            <div
+              id="publication-date"
+              class="py-1"
+            >
+              <div class="text-left font-bold">
+                Published: {{ book.publish_date }}
+              </div>
+            </div>
+            {% endif %} {% if book.publisher %}
+            <div class="py-1">
+              <strong class="opacity-30 text-gray-700">
+                Publisher &nbsp; &nbsp; &nbsp;
+              </strong>
+              <span class="opacity-70 font-authorname">
+                {{ book.publisher }}
+              </span>
+            </div>
+            {% endif %} {% if book.num_pages %}
+            <div class="py-1">
+              <strong class="opacity-30 text-gray-700">
+                Pages &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              </strong>
+              <span class="opacity-70 font-authorname">
+                {{ book.num_pages }}
+              </span>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="bookshelf flex flex-row gap-3 items-center justify-center ">
+          <div class="book">
+            <div
+              class="cover bigcover flex justify-center items-center h-full rounded-r-lg overflow-hidden"
+            >
+              <img
+                src="{{ book.link }}"
+                alt="{{ book.title }} Cover"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <a
+              class="link absolute inset-0 bg-gradient-to-r from-[rgba(0,0,0,0.02)] from-[0%] from-[rgba(0,0,0,0.05)] from-[0.75%] from-[rgba(255,255,255,0.5)] from-[1%] from-[rgba(255,255,255,0.6)] from-[1.3%] from-[rgba(255,255,255,0.5)] from-[1.4%] from-[rgba(255,255,255,0.3)] from-[1.5%] from-[rgba(255,255,255,0.3)] from-[2.4%] from-[rgba(0,0,0,0.05)] from-[2.7%] from-[rgba(0,0,0,0.05)] from-[3.5%] from-[rgba(255,255,255,0.3)] from-[4%] from-[rgba(255,255,255,0.3)] from-[4.5%] from-[rgba(244,244,244,0.1)] from-[5.4%] from-[rgba(244,244,244,0.1)] from-[99%] from-[rgba(144,144,144,0.2)] from-[100%] shadow-inner-[0_-1px_4px_rgba(0,0,0,0.12)]"
+              href="/bookPage/{{ book.book_id }}"
+            ></a>
+          </div>
+          <div
+            class="coverArealinks flex pl-6 flex-col gap-4 items-center justify-center"
+          >
+            <div>
+              <button
+                id="check-links-btn"
+                class="hover:opacity-90"
+              >
+                <img
+                  src="/static/icons/link-2.svg"
+                  alt="links"
+                  class="w-12 h-12 opacity-60 hover:opacity-80"
+                />
+              </button>
+
+              <!-- Modal for displaying links -->
+              <div
+                id="links-modal"
+                class="hidden z-50 fixed inset-0 bg-gray-800 bg-opacity-50 flex flex-col items-center justify-center"
+              >
+                <div class="bg-white p-6 rounded-xl shadow-lg w-3/4 max-w-lg">
+                  <div
+                    class="flex flex-col items-center justify-center gap-3 py-8 pb-16"
+                  >
+                    <img
+                      src="/static/icons/chain-link.svg"
+                      alt="links"
+                      class="w-14 h-14 opacity-70"
+                    />
+                    <span class="text-2xl font-bold opacity-70">
+                      Book links
+                    </span>
+                  </div>
+
+                  <div
+                    id="links-list"
+                    class="list-disc pl-"
+                  ></div>
+                  <div class="flex justify-center items-center flex-row w-full">
+                    <button
+                      id="close-modal"
+                      class="mt-16 mb-8 flex justify-center px-4 py-2 bg-gray-200 font-quicksand text-xl text-white font-bold rounded-full hover:bg-gray-300 transition"
+                    >
+                      X
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="-mt-1 -mb-1 mr-1 ">
+              <button
+                id="like-btn"
+                class="hover:opacity-100"
+              >
+                <img
+                  src="/static/icons/heart-empty.svg"
+                  alt="links"
+                  class="w-7 h-7 opacity-80"
+                />
+              </button>
+            </div>
+            <div class="bookmarkContainer -ml-1 mr-1 ">
+              <button id="collection-btn"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex  items-start flex-col">
+        <div
+          class="flex ml-28 flex-row items-center justify-start gap-4 mt-10 mb-10"
+        >
+          <button
+            id="btn-similar"
+            class="px-4 py-2 bg-gray-200 text-sm text-gray-800 text-opacity-50 rounded-md hover:bg-gray-300 hover:text-opacity-80"
+          >
+            Similar Books
+          </button>
+          <button
+            id="btn-editions"
+            class="px-4 py-2 bg-gray-200 text-sm text-gray-800 text-opacity-50 rounded-md hover:bg-gray-300 hover:text-opacity-80"
+          >
+            More Editions
+          </button>
+          <button
+            id="btn-author"
+            class="px-4 py-2 bg-gray-200 text-sm text-gray-800 text-opacity-50 rounded-md hover:bg-gray-300 hover:text-opacity-80"
+          >
+            More by Author
+          </button>
+        </div>
+
+        <div
+          id="content-container"
+          class="max-w-6xl mx-auto mt-4 px-1"
+        >
+          <div
+            id="similar-books"
+            class="hidden"
+          >
+            <div
+              id="similar-books-container"
+              class="grid grid-cols-10 gap-4"
+            ></div>
+          </div>
+
+          <div
+            id="more-editions"
+            class="hidden"
+          >
+            <div
+              id="editions-container"
+              class="grid grid-cols-10 gap-4"
+            ></div>
+          </div>
+
+          <div
+            id="same-author-books"
+            class="hidden"
+          >
+            <div
+              id="author-books-container"
+              class="grid grid-cols-10 gap-4"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts/book.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </body>
+</html>

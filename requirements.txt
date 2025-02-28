@@ -1,0 +1,11 @@
+Flask
+elasticsearch
+mysql-connector-python
+configparser
+certifi
+redis
+bcrypt
+requests
+googlesearch-python
+duckduckgo-search
+pymupdf

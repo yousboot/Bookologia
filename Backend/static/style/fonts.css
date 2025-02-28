@@ -1,0 +1,64 @@
+@font-face {
+  font-family: "logo";
+  src: url("../fonts/1776_Independence\ W00\ Bold.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "aGaramondPro";
+  src: url("../fonts/AGaramondPro-Regular.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "appleSDGothicNeo";
+  src: url("../fonts/AppleSDGothicNeo.ttc") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "metropolisThin";
+  src: url("../fonts/Metropolis-Thin.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "hindmaduraiMedium";
+  src: url("../fonts/HindMadurai-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "hindmaduraiLight";
+  src: url("../fonts/HindMadurai-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "glittenRegular";
+  src: url("../fonts/Glitten-Regular.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-logo {
+  font-family: "glittenRegular", serif;
+}
+
+.font-text {
+  font-family: "aGaramondPro", serif;
+}
+
+.font-searchBar {
+  font-family: "hindmaduraiLight", sans-serif;
+}
+
+.font-button {
+  font-family: "hindmaduraiMedium", sans-serif;
+}

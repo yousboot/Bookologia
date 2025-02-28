@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Book Search</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/style.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style/logo.css') }}"
+    />
+  </head>
+  <body class="p-2">
+    <header class="top-0 pb-2 left-0 w-full p-6 px-8 z-50">
+      <div class="flex flex-row items-end justify-end">
+        <div class="relative">
+          <button
+            id="menu-button"
+            class="flex items-center"
+          >
+            <img
+              src="/static/icons/menu-2.svg"
+              alt="Menu"
+              class="w-6 h-6 mr-3 opacity-80 hover:opacity-100 cursor-pointer"
+            />
+          </button>
+          <div
+            id="menu-dropdown"
+            class="absolute right-0 mt-2 w-48 text-sm bg-white shadow-lg rounded-xl hidden"
+          >
+            <a
+              href="/collectionPage"
+              class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >
+              Collections
+            </a>
+            <a
+              href="/about"
+              class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >
+              About Us
+            </a>
+            <a
+              href="/privacy-policy"
+              class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >
+              Privacy Policy
+            </a>
+            <button
+              id="logout-button"
+              class="block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="max-w-5xl  mx-auto p-4 mt-4 gap-4 flex flex-col">
+        <div class="justify-center flex flex-row mb-7">
+          <a
+            href="/"
+            class="text-color-logo font-logo text-7xl"
+          >
+            Bookologia
+          </a>
+        </div>
+        <div class="flex flex-row items-start justify-start">Privacy page</div>
+      </div>
+    </header>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+  </body>
+</html>
